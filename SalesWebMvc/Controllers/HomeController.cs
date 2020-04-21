@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SalesWebMvc.Models;
+using SalesWebMvc.Models.ModelosDeVisao;
 
 namespace SalesWebMvc.Controllers
 {
@@ -25,6 +26,8 @@ namespace SalesWebMvc.Controllers
 
         public IActionResult Privacy()
         {
+            //Passa informacoes de contato (email)
+            ViewData["email"] = "molina.souza@unesp.br";
             return View();
         }
 
