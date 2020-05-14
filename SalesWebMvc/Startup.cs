@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Data;
+using SalesWebMvc.Services;
 
 namespace SalesWebMvc
 {
@@ -31,6 +32,8 @@ namespace SalesWebMvc
                     options.UseSqlServer(Configuration.GetConnectionString("SalesWebMvcContext")));
             //Adicionado o serviço de Seeding (para povoamento da base)
             //Registra o serviço no sistema de injeção de dependencia
+            
+            services.AddScoped<VendedoresService>();
             services.AddScoped<SeedingService>();
         }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,8 +9,9 @@ namespace SalesWebMvc.Models
 {
     public class Venda
     {
-        
-        
+
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
         public int id { get; set; }
         public DateTime data { get; set; }
         public double total { get; set; }

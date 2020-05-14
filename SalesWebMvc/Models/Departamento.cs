@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 namespace SalesWebMvc.Models
 {
     public class Departamento
-    {   
+    {
+
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
         public int id { get; set; }
         public string nome { get; set; }
 

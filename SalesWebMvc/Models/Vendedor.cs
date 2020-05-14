@@ -9,7 +9,8 @@ namespace SalesWebMvc.Models
 {
     public class Vendedor
     {
-        
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
         public  int id { get; set; }
         public string nome { get; set; }
         public string email { get; set; }
