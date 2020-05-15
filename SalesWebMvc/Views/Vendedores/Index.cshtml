@@ -1,8 +1,71 @@
+<!--Objeto passado como argumento à View, neste caso, uma lista de vendedores (tipo Vendedores)-->
 
+@model IEnumerable<SalesWebMvc.Models.Vendedor>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vendedores";
 }
+<!--Mostra uma lista de vendedores na tela-->
 
-<h1>Vendedores</h1>
+<h1>@ViewData["Tittle"]</h1>
 
-<p>Pagina de Vendedores</p>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="success">
+            <th>
+                @Html.DisplayNameFor(titulo => titulo.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(titulo => titulo.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(titulo => titulo.nascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(titulo => titulo.salariobase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(titulo => titulo.salariobase)
+            </th>
+            <th>
+                <!--Espaço a mais no titulo (para ficar mais visual)-->
+            </th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+
+        @foreach( var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(conteudo => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(conteudo => item.email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(conteudo => item.nascimento)
+            </td>
+
+            <td>
+                @Html.DisplayFor(conteudo => item.salariobase)
+            </td>
+            <!--Ações-->
+            <a asp-action="Editar" asp-route-id="@item.id">
+                Editar
+            </a>
+            <a asp-action="Detalhes" asp-route-id="@item.id">
+                Detalhes
+            </a>
+            <a asp-action="Apagar" asp-route-id="@item.id">
+                Apagar
+            </a>
+        </tr>
+        }
+
+
+    </tbody>
+</table>
+

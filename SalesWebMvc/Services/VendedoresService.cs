@@ -15,7 +15,7 @@ namespace SalesWebMvc.Services
             _context = context;
         }
         
-        //Implementar FindAll que retorna uma lista de vendedores
+        //Implementa um FindAll que retorna uma lista de vendedores
        
         public List<Vendedor> FindAll()
         {

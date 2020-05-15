@@ -1,16 +1,32 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SalesWebMvc.Services;
 
 namespace SalesWebMvc.Controllers
 {
     public class VendedoresController : Controller
     {
+
+        //Dependencia para o VendedoresService
+        //Dados
+        private VendedoresService _vendedoresService;
+
+        //Construtor
+        public VendedoresController(VendedoresService vendedoresService)
+        {
+            _vendedoresService = vendedoresService;
+        }
         public IActionResult Index()
         {
-            return View();
+
+            //Recebe uma lista de todos os vendedores
+            var list = _vendedoresService.FindAll();
+
+            //Lista como argumento à View
+            return View(list);
         }
     }
 }
