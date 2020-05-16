@@ -19,14 +19,24 @@ namespace SalesWebMvc.Controllers
         {
             _vendedoresService = vendedoresService;
         }
+
+        //View Index para /Vendedores
         public IActionResult Index()
         {
 
             //Recebe uma lista de todos os vendedores
+            
             var list = _vendedoresService.FindAll();
 
             //Lista como argumento à View
             return View(list);
         }
+
+        //View para criar um Vendedor /Vendedor/Criar
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
     }
 }

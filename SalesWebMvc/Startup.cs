@@ -45,7 +45,7 @@ namespace SalesWebMvc
             {
                 app.UseDeveloperExceptionPage();
                 //Se estiver em estado de desenvolvimento, povoa a base com os registros de SeedingService
-                //seedingService.Seed();
+                seedingService.Seed();
             }
             else
             {
