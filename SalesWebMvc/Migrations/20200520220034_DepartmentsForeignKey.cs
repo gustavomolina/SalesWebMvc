@@ -3,39 +3,49 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SalesWebMvc.Migrations
 {
-    public partial class OtherEntities : Migration
+    public partial class DepartmentsForeignKey : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Departamento",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false),
+                    nome = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departamento", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Vendedores",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<int>(nullable: false),
                     nome = table.Column<string>(nullable: true),
                     email = table.Column<string>(nullable: true),
                     nascimento = table.Column<DateTime>(nullable: false),
                     salariobase = table.Column<double>(nullable: false),
-                    DepartamentoVendedorid = table.Column<int>(nullable: true)
+                    DepartamentoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vendedores", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Vendedores_Departamento_DepartamentoVendedorid",
-                        column: x => x.DepartamentoVendedorid,
+                        name: "FK_Vendedores_Departamento_DepartamentoId",
+                        column: x => x.DepartamentoId,
                         principalTable: "Departamento",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Vendas",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<int>(nullable: false),
                     data = table.Column<DateTime>(nullable: false),
                     total = table.Column<double>(nullable: false),
                     status = table.Column<int>(nullable: false),
@@ -58,9 +68,9 @@ namespace SalesWebMvc.Migrations
                 column: "VendedorVendaid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vendedores_DepartamentoVendedorid",
+                name: "IX_Vendedores_DepartamentoId",
                 table: "Vendedores",
-                column: "DepartamentoVendedorid");
+                column: "DepartamentoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -70,6 +80,9 @@ namespace SalesWebMvc.Migrations
 
             migrationBuilder.DropTable(
                 name: "Vendedores");
+
+            migrationBuilder.DropTable(
+                name: "Departamento");
         }
     }
 }

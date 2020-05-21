@@ -29,7 +29,8 @@ namespace SalesWebMvc
             services.AddControllersWithViews();
 
             services.AddDbContext<SalesWebMvcContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SalesWebMvcContext")));
+                    options.UseMySql(Configuration.GetConnectionString("SalesWebMvcContext"), builder =>
+builder.MigrationsAssembly("SalesWebMvc")));
             //Adicionado o serviço de Seeding (para povoamento da base)
             //Registra o serviço no sistema de injeção de dependencia
             

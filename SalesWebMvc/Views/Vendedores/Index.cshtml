@@ -7,11 +7,7 @@
 <!--Mostra uma lista de vendedores na tela-->
 
 <h1>@ViewData["Tittle"]</h1>
-<p>
-    <a asp-action="Criar" class="btn btn-defaulf">
-        Adicionar Vendedor 
-    </a>
-</p>
+
 <table class="table table-striped table-hover">
     <thead>
         <tr class="success">
@@ -27,9 +23,7 @@
             <th>
                 @Html.DisplayNameFor(titulo => titulo.salariobase)
             </th>
-            <th>
-                @Html.DisplayNameFor(titulo => titulo.salariobase)
-            </th>
+
             <th>
                 <!--Espaço a mais no titulo (para ficar mais visual)-->
             </th>
@@ -41,35 +35,44 @@
 
         @foreach( var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(conteudo => item.nome)
-            </td>
-            <td>
-                @Html.DisplayFor(conteudo => item.email)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(conteudo => item.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(conteudo => item.email)
+                </td>
 
-            <td>
-                @Html.DisplayFor(conteudo => item.nascimento)
-            </td>
+                <td>
+                    @Html.DisplayFor(conteudo => item.nascimento)
+                </td>
 
-            <td>
-                @Html.DisplayFor(conteudo => item.salariobase)
-            </td>
-            <!--Ações-->
-            <a asp-action="Editar" asp-route-id="@item.id">
-                Editar
-            </a>
-            <a asp-action="Detalhes" asp-route-id="@item.id">
-                Detalhes
-            </a>
-            <a asp-action="Apagar" asp-route-id="@item.id">
-                Apagar
-            </a>
-        </tr>
+                <td>
+                    @Html.DisplayFor(conteudo => item.salariobase)
+                </td>
+                <!--Ações-->
+
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.id">Editar</a>
+                </td>
+
+                <td>
+                    <a asp-action="Detalhes" asp-route-id="@item.id">Detalhes</a>
+                </td>
+
+                <td>
+                    <a asp-action="Apagar" asp-route-id="@item.id">Apagar</a>
+                </td>
+            
+
+            </tr>
         }
 
 
     </tbody>
 </table>
+
+<p>
+    <a asp-action="Criar" class="btn btn-primary">Adicionar Vendedor</a>
+</p>
 

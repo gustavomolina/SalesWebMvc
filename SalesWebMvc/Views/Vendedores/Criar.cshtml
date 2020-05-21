@@ -1,7 +1,49 @@
-
+@model SalesWebMvc.Models.Vendedor
 @{
     ViewData["Title"] = "Criar";
 }
 
-<h1>Cadastro de Vendedor</h1>
+<h1>Cadastro</h1>
 
+
+<hr />
+
+<div class="row">
+    <!--Ocupa 1/3 da tela-->
+    <div class="col-md-4">
+        <!--Formulário de cadastro, método POST-->
+        <form asp-action="Criar">
+
+            <!--Nome-->
+            <div class="form-group">
+                <label asp-for="nome" class="control-label">Nome:</label>
+                <input asp-for="nome" class="form-control"/>
+            </div>
+
+            <!--Email-->
+            <div class="form-group">
+                <label asp-for="email" class="control-label">E-mail:</label>
+                <input asp-for="email" class="form-control"/>
+            </div>
+
+
+            <!--Nascimento-->
+            <div class="form-group">
+                <label asp-for="nascimento" class="control-label">Nascimento:</label>
+                <input asp-for="nascimento" class="form-control" />
+            </div>
+
+            <!--Salário Base-->
+            <div class="form-group">
+                <label asp-for="salariobase" class="control-label">Salário Base:</label>
+                <input asp-for="salariobase" class="form-control"/>
+            </div>
+
+            <!--Botão de Submit-->
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+</div>

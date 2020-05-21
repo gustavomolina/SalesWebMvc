@@ -12,13 +12,18 @@ namespace SalesWebMvc.Models
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
         public  int id { get; set; }
+        [Display(Name = "Nome")]
         public string nome { get; set; }
+        [Display(Name = "E-mail")]
         public string email { get; set; }
+        [Display(Name = "Nascimento")]
         public DateTime nascimento { get; set; }
+        [Display(Name = "Salário Base")]
         public double salariobase { get; set; }
 
         //Cada vendedor possui um departamento
         public Departamento DepartamentoVendedor { get; set; }
+        public int DepartamentoId { get; set; }
 
         //Cada vendedor possui varias vendas
         //Ja instanciado por garantia
@@ -48,7 +53,7 @@ namespace SalesWebMvc.Models
             VendasVendedor.Add(venda);
         }
         
-        public void RemoveVendedor(Venda venda)
+        public void RemoveVenda(Venda venda)
         {
             VendasVendedor.Remove(venda);
         }

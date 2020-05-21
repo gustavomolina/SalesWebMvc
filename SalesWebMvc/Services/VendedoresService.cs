@@ -21,5 +21,13 @@ namespace SalesWebMvc.Services
         {
             return _context.Vendedores.ToList();
         }
+
+        //Serviço para adicionar o registro de um novo vendedor à base
+        public void Insert(Vendedor vendedor)
+        {
+            vendedor.DepartamentoVendedor = _context.Departamento.First();
+            _context.Add(vendedor);
+            _context.SaveChanges();
+        }
     }
 }

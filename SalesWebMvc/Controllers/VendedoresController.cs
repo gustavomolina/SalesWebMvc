@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SalesWebMvc.Models;
 using SalesWebMvc.Services;
 
 namespace SalesWebMvc.Controllers
@@ -36,6 +37,16 @@ namespace SalesWebMvc.Controllers
         public IActionResult Criar()
         {
             return View();
+        }
+
+        //Método POST para "Criar"
+        [HttpPost]
+        //Para previnir ataques do tipo CSRF (validação maliciosa)
+        [ValidateAntiForgeryToken]
+        public IActionResult Criar(Vendedor vendedor)
+        {
+            _vendedoresService.Insert(vendedor);
+            return RedirectToAction(nameof(Index));
         }
 
     }
