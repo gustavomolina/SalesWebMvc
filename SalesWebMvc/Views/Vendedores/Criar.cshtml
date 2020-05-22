@@ -1,4 +1,4 @@
-@model SalesWebMvc.Models.Vendedor
+@model SalesWebMvc.Models.ModelosDeVisao.VendedorFormViewModel;
 @{
     ViewData["Title"] = "Criar";
 }
@@ -16,33 +16,42 @@
 
             <!--Nome-->
             <div class="form-group">
-                <label asp-for="nome" class="control-label">Nome:</label>
-                <input asp-for="nome" class="form-control"/>
+                <label asp-for="Vendedor.nome" class="control-label">Nome:</label>
+                <input asp-for="Vendedor.nome" class="form-control" />
             </div>
 
             <!--Email-->
             <div class="form-group">
-                <label asp-for="email" class="control-label">E-mail:</label>
-                <input asp-for="email" class="form-control"/>
+                <label asp-for="Vendedor.email" class="control-label">E-mail:</label>
+                <input asp-for="Vendedor.email" class="form-control" />
             </div>
 
 
             <!--Nascimento-->
             <div class="form-group">
-                <label asp-for="nascimento" class="control-label">Nascimento:</label>
-                <input asp-for="nascimento" class="form-control" />
+                <label asp-for="Vendedor.nascimento" class="control-label">Nascimento:</label>
+                <input asp-for="Vendedor.nascimento" class="form-control" />
             </div>
 
             <!--Salário Base-->
             <div class="form-group">
-                <label asp-for="salariobase" class="control-label">Salário Base:</label>
-                <input asp-for="salariobase" class="form-control"/>
+                <label asp-for="Vendedor.salariobase" class="control-label">Salário Base:</label>
+                <input asp-for="Vendedor.salariobase" class="form-control" />
+            </div>
+
+
+
+            <!--Caixa de seleção para preencher o departamento do vendedor-->
+            <div class="form-group">
+                <label asp-for="Vendedor.DepartamentoId" class="control-label">Departamento:</label>
+                <select asp-for="Vendedor.DepartamentoId" asp-items="@(new SelectList(Model.Departamentos,"id","nome"))" class="form-control"></select>
             </div>
 
             <!--Botão de Submit-->
             <div class="form-group">
                 <input type="submit" value="Cadastrar" class="btn btn-primary" />
             </div>
+
         </form>
     </div>
 

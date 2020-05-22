@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Models;
+using SalesWebMvc.Models.ModelosDeVisao;
 using SalesWebMvc.Services;
 
 namespace SalesWebMvc.Controllers
@@ -14,11 +15,12 @@ namespace SalesWebMvc.Controllers
         //Dependencia para o VendedoresService
         //Dados
         private VendedoresService _vendedoresService;
-
+        private DepartamentosService _departamentosService;
         //Construtor
-        public VendedoresController(VendedoresService vendedoresService)
+        public VendedoresController(VendedoresService vendedoresService, DepartamentosService departamentosService)
         {
             _vendedoresService = vendedoresService;
+            _departamentosService = departamentosService;
         }
 
         //View Index para /Vendedores
@@ -36,7 +38,10 @@ namespace SalesWebMvc.Controllers
         //View para criar um Vendedor /Vendedor/Criar
         public IActionResult Criar()
         {
-            return View();
+            //Serão passados a View 'Criar' os dados do modelo de visão 'VendedorFormViewModel'
+            var departamentos = _departamentosService.FindAll();
+            var ViewModel = new VendedorFormViewModel { Departamentos = departamentos };
+            return View(ViewModel);
         }
 
         //Método POST para "Criar"
@@ -45,6 +50,7 @@ namespace SalesWebMvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Criar(Vendedor vendedor)
         {
+           
             _vendedoresService.Insert(vendedor);
             return RedirectToAction(nameof(Index));
         }
