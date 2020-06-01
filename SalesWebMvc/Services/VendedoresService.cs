@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Data;
 using SalesWebMvc.Models;
 using System;
@@ -28,6 +29,21 @@ namespace SalesWebMvc.Services
             vendedor.DepartamentoVendedor = _context.Departamento.First();
             _context.Add(vendedor);
             _context.SaveChanges();
+        }
+
+        public Vendedor FindById(int id)
+        {
+            return _context.Vendedores.Include(obj => obj.DepartamentoVendedor).FirstOrDefault(obj => obj.id == id);
+
+        }
+
+        public void Remove(int id)
+        {
+            var obj = _context.Vendedores.Find(id);
+            _context.Vendedores.Remove(obj);
+            _context.SaveChanges();
+
+        
         }
     }
 }

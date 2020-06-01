@@ -1,9 +1,10 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SalesWebMvc.Migrations
 {
-    public partial class DepartmentsForeignKey : Migration
+    public partial class DeleteSeller_3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +12,8 @@ namespace SalesWebMvc.Migrations
                 name: "Departamento",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false),
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     nome = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -23,7 +25,8 @@ namespace SalesWebMvc.Migrations
                 name: "Vendedores",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false),
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     nome = table.Column<string>(nullable: true),
                     email = table.Column<string>(nullable: true),
                     nascimento = table.Column<DateTime>(nullable: false),
@@ -45,7 +48,8 @@ namespace SalesWebMvc.Migrations
                 name: "Vendas",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false),
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     data = table.Column<DateTime>(nullable: false),
                     total = table.Column<double>(nullable: false),
                     status = table.Column<int>(nullable: false),

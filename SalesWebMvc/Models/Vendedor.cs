@@ -9,8 +9,7 @@ namespace SalesWebMvc.Models
 {
     public class Vendedor
     {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
+        
         public  int id { get; set; }
         [Display(Name = "Nome")]
         public string nome { get; set; }
@@ -44,7 +43,7 @@ namespace SalesWebMvc.Models
             this.email = email;
             this.nascimento = nascimento;
             this.salariobase = salariobase;
-            DepartamentoVendedor = departamentoVendedor;
+            this.DepartamentoVendedor = departamentoVendedor;
         }
 
         //Métodos
@@ -55,7 +54,7 @@ namespace SalesWebMvc.Models
         
         public void RemoveVenda(Venda venda)
         {
-            VendasVendedor.Remove(venda);
+            this.VendasVendedor.Remove(venda);
         }
 
         //Retorna o Valor total vendido pelo vendedor

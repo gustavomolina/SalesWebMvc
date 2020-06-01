@@ -10,8 +10,7 @@ namespace SalesWebMvc.Models
     public class Venda
     {
 
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
+        
         public int id { get; set; }
         public DateTime data { get; set; }
         public double total { get; set; }
@@ -34,7 +33,7 @@ namespace SalesWebMvc.Models
             this.data = data;
             this.total = total;
             this.status = status;
-            VendedorVenda = vendedorVenda;
+            this.VendedorVenda = vendedorVenda;
         }
  
 
