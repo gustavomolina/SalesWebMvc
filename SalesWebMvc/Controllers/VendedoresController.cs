@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Models;
 using SalesWebMvc.Models.ModelosDeVisao;
 using SalesWebMvc.Services;
+using SalesWebMvc.Services.Exceptions;
 
 namespace SalesWebMvc.Controllers
 {
@@ -40,6 +41,8 @@ namespace SalesWebMvc.Controllers
         {
             //Serão passados a View 'Criar' os dados do modelo de visão 'VendedorFormViewModel'
             var departamentos = _departamentosService.FindAll();
+            /*Obs: Só é necessário passar os dados dos departamentos pré-existentes pois
+            os dados do vendedor serão cadastrados no método POST da action 'Criar'*/
             var ViewModel = new VendedorFormViewModel { Departamentos = departamentos };
             return View(ViewModel);
         }
@@ -98,6 +101,55 @@ namespace SalesWebMvc.Controllers
             return View(obj);
         }
 
+        //Ação para editar um vendedor
+        public IActionResult Editar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var vendedor = _vendedoresService.FindById(id.Value);
+
+            if (vendedor == null)
+            {
+                //Personalizado
+                return NotFound();
+            }
+
+            /*Abrir tela de edição, com os dados do vendedor e do seu respectivo departamento (dados avindos do
+            serviço de departamento*/
+
+            List<Departamento> departamentos = _departamentosService.FindAll();
+            VendedorFormViewModel viewModel = new VendedorFormViewModel { Vendedor = vendedor, Departamentos = departamentos };
+            return View(viewModel);
+        }
+
+
+        /* Método POST para a ação 'Editar' */
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(int id, Vendedor vendedor)
+        {
+            if(id != vendedor.id)
+            {
+                return BadRequest();
+            }
+
+            //Update - Camada de serviços
+            try
+            {
+                _vendedoresService.Update(vendedor);
+                return RedirectToAction("Index");
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (DbConcurrencyException)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

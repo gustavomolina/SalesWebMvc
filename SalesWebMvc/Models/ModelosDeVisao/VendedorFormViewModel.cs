@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SalesWebMvc.Models.ModelosDeVisao
 {
-    //Classe que contem os dados necessários para se cadastrar um vendedor na View (seus dados e os dados do departamento) 
+    //Classe que contem os dados necessários para se cadastrar e editar um vendedor na View (seus dados e os dados do departamento) 
     public class VendedorFormViewModel
     {
         public Vendedor Vendedor { get; set; }

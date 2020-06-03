@@ -12,6 +12,7 @@ namespace SalesWebMvc.Models
 
         
         public int id { get; set; }
+        [Display(Name = "Departamento")]
         public string nome { get; set; }
 
         //Cada departamento possui varios vendedores
