@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -63,14 +64,14 @@ namespace SalesWebMvc.Controllers
         {
             if(id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var obj = _vendedoresService.FindById(id.Value);
 
             if(obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             return View(obj);
@@ -88,14 +89,14 @@ namespace SalesWebMvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var obj = _vendedoresService.FindById(id.Value);
 
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             return View(obj);
@@ -106,7 +107,7 @@ namespace SalesWebMvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var vendedor = _vendedoresService.FindById(id.Value);
@@ -114,7 +115,7 @@ namespace SalesWebMvc.Controllers
             if (vendedor == null)
             {
                 //Personalizado
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             /*Abrir tela de edição, com os dados do vendedor e do seu respectivo departamento (dados avindos do
@@ -133,7 +134,7 @@ namespace SalesWebMvc.Controllers
         {
             if(id != vendedor.id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Id mismatch" });
             }
 
             //Update - Camada de serviços
@@ -142,14 +143,21 @@ namespace SalesWebMvc.Controllers
                 _vendedoresService.Update(vendedor);
                 return RedirectToAction("Index");
             }
-            catch (NotFoundException)
+            //DbConcurrencyException, NotFound e demais excessões
+            catch (ApplicationException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            catch (DbConcurrencyException)
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
             {
-                return BadRequest();
-            }
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

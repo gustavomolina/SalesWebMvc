@@ -6,6 +6,9 @@ namespace SalesWebMvc.Models.ModelosDeVisao
     {
         public string RequestId { get; set; }
 
+        //Para se ter uma msenagem customizada
+        public string Message { get; set; }
+
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }
