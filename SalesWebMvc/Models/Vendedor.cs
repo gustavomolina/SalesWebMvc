@@ -14,10 +14,14 @@ namespace SalesWebMvc.Models
         [Display(Name = "Nome")]
         public string nome { get; set; }
         [Display(Name = "E-mail")]
+        [DataType(DataType.EmailAddress)]
         public string email { get; set; }
         [Display(Name = "Nascimento")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
         public DateTime nascimento { get; set; }
         [Display(Name = "Salário Base")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double salariobase { get; set; }
 
         //Cada vendedor possui um departamento
