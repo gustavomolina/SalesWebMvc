@@ -4,16 +4,16 @@ Esse é um sistema para gerenciar os vendedores de determinada loja e ses respec
 
 # Demo
 
-##Operações
+## Operações
 
 Na tela inicial, pode-se acessar o registro de vendores cadastrados na base
 ![GIF Tela Inicial](gifs/tela-inicial.gif)
 
 
-##Editar
-![GIF Editar](editar.gif)
+## Editar
+![GIF Editar](gifs/editar.gif)
 
-##Detalhes
+## Detalhes
 ![GIF Detalhes](gifs/detalhes.gif)
 
 
