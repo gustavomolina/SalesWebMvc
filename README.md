@@ -19,7 +19,7 @@ Na tela inicial, pode-se acessar o registro de vendores cadastrados na base
 
 ## Tecnologias Usadas
 * C#
-*ASP .NET
-*Bootstrap
+* ASP .NET
+* Bootstrap
 
 
